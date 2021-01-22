@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42.tokyo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 23:20:18 by syamashi          #+#    #+#             */
-/*   Updated: 2020/07/07 21:14:51 by syamashi         ###   ########.fr       */
+/*   Updated: 2020/07/07 23:08:54 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static	int		esc(char **s, int fd, int flag)
 
 	if (flag == -1)
 	{
-		i = 0;
-		while (i < 256)
+		i = -1;
+		while (++i < 256)
 		{
 			if (s[i])
 			{
@@ -30,8 +30,11 @@ static	int		esc(char **s, int fd, int flag)
 	}
 	if (flag == 0)
 	{
-		free(s[fd]);
-		s[fd] = NULL;
+		if (s[fd])
+		{
+			free(s[fd]);
+			s[fd] = NULL;
+		}
 	}
 	return (flag);
 }
