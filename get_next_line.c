@@ -6,11 +6,11 @@
 /*   By: syamashi <syamashi@student.42.tokyo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 23:20:18 by syamashi          #+#    #+#             */
-/*   Updated: 2020/07/07 23:16:24 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/01/25 12:39:22 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static	int		esc(char **s, int fd, int flag)
 {
@@ -85,10 +85,10 @@ static	int		read_fd(int fd, char **line, char **s)
 		free(s[fd]);
 		s[fd] = move;
 	}
-	if (!(*line = ft_strdup(s[fd])))
-		return (esc(s, fd, -1));
 	free(buf);
 	buf = NULL;
+	if (!(*line = ft_strdup(s[fd])))
+		return (esc(s, fd, -1));
 	return (esc(s, fd, 0));
 }
 
