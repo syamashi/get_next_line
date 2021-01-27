@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42.tokyo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 23:20:18 by syamashi          #+#    #+#             */
-/*   Updated: 2021/01/25 12:39:22 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/01/27 12:59:05 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ static	int		read_fd(int fd, char **line, char **s)
 
 	if (!(buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))))
 		return (esc(s, fd, -1));
+	if (!s[fd] && !(s[fd] = ft_strdup("")))
+		return (esc(s, fd, -1));
 	while ((endr = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
-		if (!s[fd] && !(s[fd] = ft_strdup("")))
-			return (esc(s, fd, -1));
 		buf[endr] = '\0';
 		if ((move = ft_strchr(buf, '\n')))
 			return (end_n(move, line, &s[fd], buf) == -1 ? esc(s, fd, -1) : 1);
